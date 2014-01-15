@@ -1,2 +1,16 @@
-<h1>Halls#index</h1>
-<p>Find me in app/views/halls/index.html.erb</p>
+<h1>My halls</h1>
+<table>
+  <tr>
+    <th>Hall name</th>
+    <th>Belongs to storage</th>
+  </tr>
+
+  <% @halls.each do |hall| %>
+    <tr>
+    <td><%= hall.name %></td>
+    <td><%= hall.storage.name %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Create a new hall', new_hall_path %>

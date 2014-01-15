@@ -1,0 +1,10 @@
+<h1>Create a hall</h1>
+<%= form_for @halls do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label 'Select storage' %>
+  <%= f.collection_select :storage_id, @storages, :id, :name %>
+  <br>
+  <%= f.submit :save %>
+<% end %>

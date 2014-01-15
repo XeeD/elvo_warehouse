@@ -18,5 +18,12 @@
 
 <%= yield %>
 
+<% if current_user %>
+<ul>
+  <li><%= link_to 'Storages', storages_path %></li>
+  <li><%= link_to 'Halls', halls_path %></li>
+</ul>
+
+<% end %>
 </body>
 </html>

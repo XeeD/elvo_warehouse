@@ -1,6 +1,11 @@
 <h1>Storage "<%= @storage.name %>"</h1>
-<p>Storage info, halls list, etc.</p>
 
-<ul>
-  <li><%= link_to 'Manage halls', halls_path %></li>
-</ul>
+<h2>Related halls</h2>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+<% @storage.halls.each do |hall| %>
+  <tr><td><%= hall.name %></td></tr>
+<% end %>
+</table>
