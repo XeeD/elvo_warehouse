@@ -1,0 +1,6 @@
+<h1>Rename "<%= @storage.name %>"</h1>
+<%= form_for(@storage) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Rename' %>
+<% end %>

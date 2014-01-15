@@ -1,9 +1,17 @@
 ElvoWarehouse::Application.routes.draw do
+  devise_for :users
+  #devise_for :installs -- bez tohohle zakomentovani nefungovalo, nalezeno na https://github.com/plataformatec/devise/issues/2554
+  get "storages/index"
+  get "halls/index"
+  get "cells/index"
+  get "location/index"
+  get "location/new"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  root :to => 'storages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -13,6 +21,14 @@ ElvoWarehouse::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  resources :locations
+
+  resources :cells
+
+  resources :halls
+
+  resources :storages
 
   # Example resource route with options:
   #   resources :products do
