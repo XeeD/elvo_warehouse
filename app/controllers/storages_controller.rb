@@ -8,7 +8,7 @@ class StoragesController < ApplicationController
   end
 
   def create
-    @storage = Storage.new(app_params) # Tady se musi pouzit params.require, attr_accessible nefunguje
+    @storage = Storage.new(app_params) # Tady se musi pouzit params.require (viz app_params) - attr_accessible nefunguje
     @storage.user_id = current_user.id
     if @storage.save
       redirect_to storages_path, notice: 'Storage created'
@@ -33,8 +33,8 @@ class StoragesController < ApplicationController
 
   def update
     @storage = Storage.find(params[:id])
-    @storage.name = params[:name]
-    if @storage.save
+
+    if @storage.update_attributes(app_params)
       redirect_to storages_path
     end
   end

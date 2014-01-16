@@ -5,7 +5,7 @@
   <tr>
     <td><%= link_to storage.name, storage_path(storage)%> (halls: <%= storage.halls.count %>)</td>
     <td><%= link_to 'Rename', edit_storage_path(storage) %></td>
-    <td><%= link_to 'Destroy', storage, method: :delete, data: { confirm: 'Sure?' } %></td>
+    <td><%= link_to 'Delete', storage, method: :delete, data: { confirm: 'Sure?' } %></td>
   </tr>
 <% end %>
 </table>

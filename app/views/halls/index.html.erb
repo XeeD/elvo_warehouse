@@ -3,12 +3,16 @@
   <tr>
     <th>Hall name</th>
     <th>Belongs to storage</th>
+    <th>Size</th>
   </tr>
 
   <% @halls.each do |hall| %>
     <tr>
-    <td><%= hall.name %></td>
-    <td><%= hall.storage.name %></td>
+    <td><%= link_to hall.name, hall_path(hall) %></td>
+    <td><%= link_to hall.storage.name, storage_path(hall.storage.id) %></td>
+    <td><%= hall.width || 0 %> x <%= hall.length || 0 %></td>
+    <td><%= link_to 'Edit', edit_hall_path(hall) %></td>
+    <td><%= link_to 'Destroy', hall, method: :delete, data: { confirm: 'Sure?' } %></td>
     </tr>
   <% end %>
 </table>

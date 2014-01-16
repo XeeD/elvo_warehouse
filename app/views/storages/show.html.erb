@@ -6,6 +6,6 @@
     <th>Name</th>
   </tr>
 <% @storage.halls.each do |hall| %>
-  <tr><td><%= hall.name %></td></tr>
+  <tr><td><%= link_to hall.name, hall_path(hall.id) %></td></tr>
 <% end %>
 </table>

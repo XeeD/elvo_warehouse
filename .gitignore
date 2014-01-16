@@ -20,3 +20,5 @@ config/initializers/secret_token.rb
 
 # We do not use tests, so we should not add them to repo
 /test/
+# Ignore RubyMine project directory
+/.idea/
