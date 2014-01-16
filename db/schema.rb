@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116102946) do
+ActiveRecord::Schema.define(version: 20140116124338) do
 
   create_table "cells", force: true do |t|
     t.integer  "coordinate_x"
     t.integer  "coordinate_y"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "hall_id"
   end
 
   create_table "halls", force: true do |t|

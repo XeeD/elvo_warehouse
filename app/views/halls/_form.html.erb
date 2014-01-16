@@ -1,0 +1,18 @@
+<%= form_for @hall do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+
+    <%= f.label 'Select storage' %>
+    <%= f.collection_select :storage_id, @storages, :id, :name %>
+    <br>
+
+    <%= f.label :width %>
+    <%= f.number_field :width %>
+    <br>
+
+    <%= f.label :length %>
+    <%= f.number_field :length %>
+    <br>
+
+    <%= f.submit :save %>
+<% end %>
