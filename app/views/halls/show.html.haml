@@ -1,6 +1,6 @@
 :css
   table, td { border: 1px solid black;}
-  td { width: 50px; height: 50px; }
+  td { width: 80px; height: 80px; }
 
 %h1 Hall "#{@hall.name}"
 %p Belongs to storage #{link_to @hall.storage.name, storage_path(@hall.storage.id)}.
@@ -9,10 +9,27 @@
     %tr
       - for x in 1..@hall.width
         %td
-          x: #{x}
-          %br
-          y: #{y}
+          [x: #{x}, y: #{y}]
+          #{@hall.cells.where(coordinate_x: x, coordinate_y: y).last.location.try(:name)}
 
+= link_to 'Edit', edit_hall_path(@hall)
+
+%h2 Locations
+%table
+  %tr
+    %th Name
+    %th Start point
+    %th End point
+
+  - @locations.each do |location|
+    %tr
+      %td #{location.name}
+      %td x: #{location.selection_start_x}, y: #{location.selection_start_y}
+      %td x:#{location.selection_end_x}, y: #{location.selection_end_y}
+      %td
+        =link_to 'Destroy', hall_location_path(@hall, location), method: :delete, data: { confirm: 'Sure?' }
+
+%h2 Create a new location
 = form_for([@hall, @location]) do |f|
   = f.label :name
   = f.text_field :name
@@ -35,4 +52,4 @@
 
   = f.submit
 
-= link_to 'Edit', edit_hall_path(@hall)
+  %br
