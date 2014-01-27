@@ -1,0 +1,38 @@
+:css
+  table, td { border: 1px solid black;}
+  td { width: 50px; height: 50px; }
+
+%h1 Hall "#{@hall.name}"
+%p Belongs to storage #{link_to @hall.storage.name, storage_path(@hall.storage.id)}.
+%table
+  - for y in 1..@hall.length
+    %tr
+      - for x in 1..@hall.width
+        %td
+          x: #{x}
+          %br
+          y: #{y}
+
+= form_for([@hall, @location]) do |f|
+  = f.label :name
+  = f.text_field :name
+  %br
+
+  = f.label :location_type
+  = f.text_field :location_type
+  %br
+
+  = f.label :selection_start
+  = f.text_field :selection_start_x
+  = f.text_field :selection_start_y
+  %br
+
+  = f.label :selection_end
+  = f.text_field :selection_end_x
+  = f.text_field :selection_end_y
+
+  %br
+
+  = f.submit
+
+= link_to 'Edit', edit_hall_path(@hall)

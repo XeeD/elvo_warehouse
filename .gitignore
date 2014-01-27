@@ -17,6 +17,8 @@ rerun.txt
 pickle-email-*.html
 .project
 config/initializers/secret_token.rb
+# DB driver for RubyMine
+/db/*.jar
 
 # We do not use tests, so we should not add them to repo
 /test/

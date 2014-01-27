@@ -18,6 +18,7 @@ class HallsController < ApplicationController
 
   def show
     @hall = Hall.find(params[:id])
+    @location = @hall.locations.new
   end
 
   def edit

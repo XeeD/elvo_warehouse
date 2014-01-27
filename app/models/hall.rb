@@ -1,15 +1,19 @@
 class Hall < ActiveRecord::Base
   belongs_to :storage
   belongs_to :user
-  has_many :locations #, dependent: :destroy
-  has_many :cells #, dependent: :destroy
+  has_many :locations, dependent: :destroy
+  has_many :cells, dependent: :destroy
 
-  after_create :create_cells
+  after_create :create_cells!
 
-  def create_cells
-    @cells = Cell.new
-    #self.°    #@cells.hall_id
-    #@cells.width
-    # ??
+  def create_cells!
+    for y in 1..self.length
+      for x in 1..self.width
+        cells.create!(
+            coordinate_x: x,
+            coordinate_y: y
+        )
+       end
+    end
   end
 end
