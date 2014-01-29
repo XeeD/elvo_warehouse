@@ -1,0 +1,10 @@
+= form_for([@stock_article, @placement]) do |f|
+  = f.label :location_id
+  = f.collection_select :location_id, Location.all, :id, :name
+  %br
+
+  = f.label :quantity
+  = f.number_field :quantity
+  %br
+
+  = f.submit

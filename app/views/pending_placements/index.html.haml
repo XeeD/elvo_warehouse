@@ -1,0 +1,26 @@
+%h1 Pending placements
+= will_paginate @stock_articles
+%table
+  %tr
+    %th Cezar ID
+    %th Name
+    %th Quantity
+    %th Already placed
+
+  - @stock_articles.each do |article|
+    %tr
+      %td
+        = article.cezar_id
+      %td
+        = article.name
+
+      %td
+        = article.quantity
+
+      %td
+        = article.quantity_placed
+        
+      %td
+        = link_to 'Create placement', new_stock_article_placement_path(article)
+
+= will_paginate @stock_articles

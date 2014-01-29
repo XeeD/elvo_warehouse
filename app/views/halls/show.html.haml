@@ -20,12 +20,14 @@
     %th Name
     %th Start point
     %th End point
+    %th Capacity
 
   - @locations.each do |location|
     %tr
       %td #{location.name}
       %td x: #{location.selection_start_x}, y: #{location.selection_start_y}
       %td x:#{location.selection_end_x}, y: #{location.selection_end_y}
+      %td= location.capacity
       %td
         =link_to 'Destroy', hall_location_path(@hall, location), method: :delete, data: { confirm: 'Sure?' }
 
@@ -36,7 +38,7 @@
   %br
 
   = f.label :location_type
-  = f.text_field :location_type
+  = f.collection_radio_buttons :location_type, Location::LOCATION_TYPE, :first, :first
   %br
 
   = f.label :selection_start

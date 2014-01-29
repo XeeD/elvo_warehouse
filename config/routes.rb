@@ -26,6 +26,12 @@ ElvoWarehouse::Application.routes.draw do
 
   resources :storages
 
+  resources :pending_placements, only: :index
+
+  resources :stock_articles, only: [:index, :show] do
+    resources :placements, except: [:index, :show]
+  end
+
   # Example resource route with options:
   #   resources :products do
   #     member do

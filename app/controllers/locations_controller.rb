@@ -22,6 +22,6 @@ class LocationsController < ApplicationController
 
   private
   def location_params
-    params.require(:location).permit(:id, :name, :selection_start_x, :selection_start_y, :selection_end_x, :selection_end_y)
+    params.require(:location).permit(:id, :name, :selection_start_x, :selection_start_y, :selection_end_x, :selection_end_y, :location_type)
   end
 end

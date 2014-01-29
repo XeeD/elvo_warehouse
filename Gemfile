@@ -33,6 +33,7 @@ gem 'pg', '0.17.1' # On OS X needs flags: ARCHFLAGS="-arch x86_64"
 
 gem 'haml-rails'
 
+gem 'will_paginate', '~> 3.0'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
