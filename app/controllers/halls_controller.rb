@@ -1,16 +1,15 @@
 class HallsController < ApplicationController
   def index
-    @halls = Hall.all.where(user_id: current_user.id)
+    @halls = Hall.all
   end
 
   def new
     @hall = Hall.new
-    @storages = Storage.all.where(user_id: current_user.id)
+    @storages = Storage.all
   end
 
   def create
     @halls = Hall.new(app_params)
-    @halls.user_id = current_user.id
     if @halls.save
       redirect_to halls_path, notice: 'Hall was created'
     end
@@ -24,7 +23,7 @@ class HallsController < ApplicationController
 
   def edit
     @hall = Hall.find(params[:id])
-    @storages = Storage.all.where(user_id: current_user.id)
+    @storages = Storage.all
   end
 
   def update

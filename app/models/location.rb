@@ -1,8 +1,11 @@
 class Location < ActiveRecord::Base
   belongs_to :hall
-  has_many :cells, dependent: :nullify # nullify nastavi foreign keys na nill - slozitejsi akce mozne pres :after_destroy
+  has_many :cells, dependent: :nullify # nullify nastavi foreign keys na nil - slozitejsi akce mozne pres :after_destroy
+  has_many :placements, dependent: :destroy
+  has_many :stock_articles, through: :placements
 
   after_create :assign_cells
+
 
   def assign_cells
     Cell.where(

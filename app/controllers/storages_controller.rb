@@ -1,6 +1,6 @@
 class StoragesController < ApplicationController
   def index
-    @storages = Storage.all.where(:user_id => current_user.id)
+    @storages = Storage.all
   end
 
   def new
@@ -9,7 +9,6 @@ class StoragesController < ApplicationController
 
   def create
     @storage = Storage.new(app_params) # Tady se musi pouzit params.require (viz app_params) - attr_accessible nefunguje
-    @storage.user_id = current_user.id
     if @storage.save
       redirect_to storages_path, notice: 'Storage created'
     else

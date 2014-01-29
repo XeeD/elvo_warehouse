@@ -11,49 +11,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140125204417) do
+ActiveRecord::Schema.define(version: 20140129131717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cells", force: true do |t|
-    t.integer  "coordinate_x"
-    t.integer  "coordinate_y"
+    t.integer  "coordinate_x", null: false
+    t.integer  "coordinate_y", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hall_id"
+    t.integer  "hall_id",      null: false
+    t.integer  "location_id"
   end
 
   create_table "halls", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "storage_id"
-    t.integer  "length"
-    t.integer  "width"
+    t.integer  "storage_id", null: false
+    t.integer  "length",     null: false
+    t.integer  "width",      null: false
   end
 
   create_table "locations", force: true do |t|
-    t.string   "name"
-    t.integer  "capacity"
-    t.integer  "location_type"
+    t.string   "name",              null: false
+    t.integer  "capacity",          null: false
+    t.integer  "location_type",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "hall_id"
-    t.integer  "selection_start_x"
-    t.integer  "selection_start_y"
-    t.integer  "selection_end_x"
-    t.integer  "selection_end_y"
+    t.integer  "hall_id",           null: false
+    t.integer  "selection_start_x", null: false
+    t.integer  "selection_start_y", null: false
+    t.integer  "selection_end_x",   null: false
+    t.integer  "selection_end_y",   null: false
   end
 
   add_index "locations", ["hall_id"], name: "index_locations_on_hall_id", using: :btree
 
-  create_table "storages", force: true do |t|
-    t.string   "name"
+  create_table "placements", force: true do |t|
+    t.integer "location_id",      null: false
+    t.integer "stock_article_id", null: false
+    t.integer "quantity",         null: false
+  end
+
+  add_index "placements", ["location_id", "stock_article_id"], name: "index_placements_on_location_id_and_stock_article_id", unique: true, using: :btree
+  add_index "placements", ["quantity"], name: "index_placements_on_quantity", using: :btree
+
+  create_table "stock_articles", force: true do |t|
+    t.string   "cezar_id",         limit: 30,             null: false
+    t.integer  "stock_type",                              null: false
+    t.integer  "ean_code",         limit: 8
+    t.integer  "quantity",                    default: 0, null: false
+    t.integer  "ordered_quantity",            default: 0, null: false
+    t.integer  "weight"
+    t.integer  "size"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.string   "name"
+  end
+
+  add_index "stock_articles", ["cezar_id", "stock_type"], name: "index_stock_articles_on_cezar_id_and_stock_type", unique: true, using: :btree
+
+  create_table "storages", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
